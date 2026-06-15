@@ -14,6 +14,8 @@ values are in the code; this file does not copy them, so it cannot drift.
   leaderboards. Model: `backend/app/models.py`.
 - **Leaderboard** - the top scores for a game, ordered by score descending.
   Built in `backend/app/routers/scores.py`.
+- **Score history** - all scores submitted by a player, ordered by `achieved_at`
+  descending. Built in `backend/app/routers/users.py`.
 
 ## Where values and rules live
 

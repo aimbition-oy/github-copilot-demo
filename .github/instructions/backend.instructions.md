@@ -13,6 +13,9 @@ The backend owns `arcade_db` and **verifies** JWTs (it never issues them).
   verifies the `Bearer` token with the shared `JWT_SECRET`.
 - **Leaderboards** order by `Score.score.desc()` with a bounded `limit`; keep the
   query in the router thin.
+- **Score history** (`routers/users.py`) joins `Score` to `Game` and orders by
+  `achieved_at DESC`. Unknown username → `200 []`; do not 404 (backend has no User
+  table — a 404 would require a cross-service call to `auth`).
 - **Games seed at startup** when the table is empty (`app/seed.py`); edit the seed
   list there.
 - **Test endpoints** (`/test/*`) must guard on `ENABLE_TEST_ENDPOINTS` and return

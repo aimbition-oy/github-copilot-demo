@@ -24,3 +24,9 @@ Do this:
 The full pipeline, gates, and artifacts are defined in
 `docs/agentic-workflows.md`. Do not start implementing here - that is the
 coordinator's job.
+
+**Two steps by design.** This skill only primes the run and stops - a skill
+cannot launch an agent, so the actual work happens after you switch to the
+**Feature Builder** agent. If you prefer one step, skip this skill entirely and
+just invoke the Feature Builder agent directly with your task; it will create the
+run folder itself.

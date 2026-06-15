@@ -12,6 +12,7 @@ from app.db import get_db, init_db
 from app.models import Score
 from app.routers.games import router as games_router
 from app.routers.scores import router as scores_router
+from app.routers.users import router as users_router
 
 
 @asynccontextmanager
@@ -35,6 +36,7 @@ app.add_middleware(
 
 app.include_router(games_router)
 app.include_router(scores_router)
+app.include_router(users_router)
 
 
 @app.get("/health")

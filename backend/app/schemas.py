@@ -44,3 +44,12 @@ class LeaderboardEntry(BaseModel):
     username: str
     score: int
     achieved_at: datetime
+
+
+class PlayerScoreOut(BaseModel):
+    game_slug: str
+    game_title: str
+    score: int
+    achieved_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)

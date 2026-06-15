@@ -17,6 +17,23 @@ import subprocess
 import sys
 
 
+WRITE_HINTS = (
+    "create_file",
+    "replace_string",
+    "multi_replace",
+    "insert_edit",
+    "apply_patch",
+    "edit",
+    "write_file",
+    "notebook_edit",
+)
+
+
+def is_write_tool(name):
+    n = (name or "").lower()
+    return any(h in n for h in WRITE_HINTS)
+
+
 def extract_paths(ti):
     out = []
     for key in ("files", "filePaths", "paths"):
@@ -36,6 +53,8 @@ def extract_paths(ti):
 
 def main():
     data = json.load(sys.stdin)
+    if not is_write_tool(data.get("tool_name", "")):
+        sys.exit(0)  # only format files that were actually edited, not read
     ti = data.get("tool_input") or {}
     cwd = data.get("cwd") or os.getcwd()
     formatted = []

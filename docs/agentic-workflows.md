@@ -184,14 +184,20 @@ Merged into `.vscode/settings.json`:
   skills.
 - `chat.useCustomAgentHooks: true` - required for the agent-scoped hooks above.
 
-`.vscode/settings.json` is force-tracked (a `!.vscode/settings.json` exception in
-`.gitignore`) so these settings travel with the repo.
+`.vscode/settings.json` is git-ignored (it falls under the `.vscode/*` rule), so
+these settings live in your local workspace rather than travelling with the repo -
+apply the list above once per workspace.
 
 ## Model / cost notes
 
 A subagent's model cannot exceed the coordinator's tier. Coordinators and
 `test-lead` are Opus 4.7; the rest are Sonnet 4.6 (safely below). If you run a
 coordinator on a cheaper model from the picker, its Opus subagents silently
-downgrade - run coordinators on Opus as declared for the demo. Tool names follow
-this repo's existing short-form convention (see `researcher.agent.md`); adjust to
-your VS Code build's exact tool ids if an agent fails to load.
+downgrade - run coordinators on Opus as declared for the demo.
+
+Tool ids use VS Code's toolset names (`read`, `search`, `edit`, `agent`, `todo`)
+plus namespaced sub-tools where needed. Only the agents that run commands carry
+terminal access: the **Implementer** and both **coordinators** have
+`execute/runInTerminal` + `execute/getTerminalOutput` (to run `make`/`pytest`/`npm`
+and read results). The read-only agents (Researcher, Test Lead, Integrator) and the
+Doc Writer have no terminal tool by design.

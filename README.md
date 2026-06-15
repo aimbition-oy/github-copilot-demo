@@ -235,6 +235,22 @@ Every hook fails open (a hook bug never blocks work) and every decision is logge
 to `agent-runs/audit/hooks.log`. Full detail:
 [`docs/agentic-workflows.md`](docs/agentic-workflows.md#hooks-guardrails-and-automation).
 
+### Inventory of agentic assets
+
+| Asset | Path |
+| --- | --- |
+| Coordinators | `.github/agents/feature-builder.agent.md`, `refactor-lead.agent.md` |
+| Subagents | `.github/agents/{researcher,test-lead,integrator,implementer,doc-writer}.agent.md` |
+| Kickoff skills | `.github/skills/build-feature/`, `refactor/` |
+| Reusable skills | `.github/skills/{run-tests,research,check-integration,sync-docs}/` |
+| Global hooks | `.github/hooks/{gatekeeper,format,orient}.json` + matching `*.py` |
+| Hook scripts | `.github/hooks/{gatekeeper,writezone,format_edited,audit_implementer,orient}.py` |
+| Repo-wide rules | `AGENTS.md` |
+| Path-scoped rules | `.github/instructions/*.instructions.md` (8) |
+| Reference docs | `docs/` (architecture, domain, per-domain, testing, agentic-workflows) |
+| Run artifacts / audit | `agent-runs/active/`, `agent-runs/archive/`, `agent-runs/audit/` |
+| Settings | `.vscode/settings.json` (4 keys; git-ignored, set per workspace) |
+
 ---
 
 ## Copilot Training Suggestions

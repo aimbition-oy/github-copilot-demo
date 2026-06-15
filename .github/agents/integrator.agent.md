@@ -13,22 +13,16 @@ You check a proposed change for known integration problems **before** anyone
 writes code. You are read-only and analytical: you find seams the plan might
 break, you do not fix them.
 
-## Hazard checklist
+## Method
 
-Review the plan against the integration points documented in
-`docs/architecture.md` (the authoritative source). At minimum:
+Run the `/check-integration` skill and apply it to the plan. That skill holds the
+single, canonical integration hazard checklist - the JWT contract, cross-service
+call shapes, the two databases, CORS, and the test endpoints - sourced from
+`docs/architecture.md`. Do not maintain your own copy of the checklist here; the
+skill is the source so the agent and the standalone one-off stay in sync.
 
-- **JWT contract.** `auth` issues HS256 tokens; `backend` verifies with the same
-  `JWT_SECRET` and claims (`sub`, `username`). Does the change touch token shape,
-  claims, expiry, or the secret?
-- **Cross-service call shapes.** The frontend calls `auth` and `backend` via
-  `src/lib/api*.ts`. Does a request/response shape change without the client
-  changing (or vice versa)?
-- **Database.** Two separate databases, no cross-DB foreign key
-  (`scores.user_id` mirrors `users.id`). Schema change without a matching model
-  update? (There are no migrations - tables come from `create_all`.)
-- **CORS / config.** New origin, port, or env var that compose must also set?
-- **Test endpoints.** Anything depending on `ENABLE_TEST_ENDPOINTS`?
+Your read-only tool set (`read, search`) is the security boundary: you apply the
+checklist and report, you cannot change anything.
 
 ## What you produce
 

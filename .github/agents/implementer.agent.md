@@ -1,7 +1,7 @@
 ---
 name: "Implementer"
 description: "Writes tests and then code under TDD, one step at a time, running the test command after each change and reporting pass/fail. Never writes tests and code in the same pass. Used as a subagent by the coordinators; not for free-form chat."
-tools: [read, search, edit, todo, execute/runTask]
+tools: [read, search, edit, todo, execute/runInTerminal, execute/getTerminalOutput]
 agents: []
 model: [Claude Sonnet 4.6 (copilot)]
 user-invocable: false

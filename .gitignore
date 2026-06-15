@@ -45,7 +45,6 @@ backend/*.db
 
 # Editors — VS Code (keep extensions.json)
 .vscode/*
-!.vscode/settings.json
 !.vscode/extensions.json
 
 # JetBrains / IntelliJ

@@ -72,6 +72,8 @@ A typical session ties every service together:
    `backend` verifies it, looks up the game, inserts a `Score`.
 3. **View leaderboard** - frontend reads `backend`; `backend` returns the top
    scores for the game ordered by score.
+4. **View score history** - frontend reads `backend` (no token needed); `backend`
+   joins `Score` to `Game` and returns the player's scores ordered by date.
 
 Business concepts (users, games, scores, leaderboards): [domain.md](domain.md).
 Per-domain conventions live in `.github/instructions/` and the docs linked above.

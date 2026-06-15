@@ -14,8 +14,23 @@ import sys
 LOG = pathlib.Path("agent-runs/audit/implementer.log")
 
 
+WRITE_HINTS = (
+    "create_file",
+    "replace_string",
+    "multi_replace",
+    "insert_edit",
+    "apply_patch",
+    "edit",
+    "write_file",
+    "notebook_edit",
+)
+
+
 def main():
     data = json.load(sys.stdin)
+    name = (data.get("tool_name") or "").lower()
+    if not any(h in name for h in WRITE_HINTS):
+        sys.exit(0)  # audit edits only, not reads/searches
     ti = data.get("tool_input") or {}
 
     files = []

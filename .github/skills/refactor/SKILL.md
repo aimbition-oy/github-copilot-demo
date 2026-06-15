@@ -23,3 +23,9 @@ Do this:
 
 The defining rule is **no behavior change** - characterization tests first. Full
 pipeline and gates: `docs/agentic-workflows.md`. Do not start refactoring here.
+
+**Two steps by design.** This skill only primes the run and stops - a skill
+cannot launch an agent, so the actual work happens after you switch to the
+**Refactor Lead** agent. If you prefer one step, skip this skill entirely and just
+invoke the Refactor Lead agent directly with your task; it will create the run
+folder itself.

@@ -1,7 +1,7 @@
 ---
 name: "Feature Builder"
 description: "Coordinator for adding or changing behavior with TDD. Runs research -> test plan -> plan -> integration check -> human approval -> failing tests -> code to green -> docs. Delegates to subagents; stops for human gates. Start it with the /build-feature skill."
-tools: [agent, read, search, edit, todo, execute/runTask]
+tools: [agent, read, search, edit, todo, execute/runInTerminal, execute/getTerminalOutput]
 agents: ["Researcher", "Test Lead", "Integrator", "Implementer", "Doc Writer"]
 model: [Claude Opus 4.7 (copilot)]
 user-invocable: true
@@ -23,6 +23,11 @@ and own the plan, the human gates, and the run log. Follow the shared protocol i
 rule, and the write-zones. You are the **only** writer of the run directory
 `agent-runs/active/<task-id>/`; the read-only subagents return their output and
 you persist it to the named file. Do not create artifacts anywhere else.
+
+**First, set up the run.** If `agent-runs/active/<task-id>/` does not exist yet
+(you were invoked directly instead of via the `/build-feature` skill), pick a
+short kebab-case task-id and create `run.md` with the task statement before
+step 1. If `/build-feature` already primed it, just continue.
 
 ## Protocol
 
