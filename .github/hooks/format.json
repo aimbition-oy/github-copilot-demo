@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "timeout": 30,
+        "osx": "python3 .github/hooks/format_edited.py",
+        "linux": "python3 .github/hooks/format_edited.py",
+        "windows": "py .github/hooks/format_edited.py",
+        "command": "python3 .github/hooks/format_edited.py"
+      }
+    ]
+  }
+}

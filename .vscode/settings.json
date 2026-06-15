@@ -1,0 +1,6 @@
+{
+    "makefile.configureOnOpen": false,
+    "chat.subagents.allowInvocationsFromSubagents": true,
+    "github.copilot.chat.skillTool.enabled": true,
+    "chat.useCustomAgentHooks": true
+}

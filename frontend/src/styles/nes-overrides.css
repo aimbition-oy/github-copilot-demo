@@ -1,0 +1,28 @@
+/* Press Start 2P font for the authentic NES feel */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --nes-font: 'Press Start 2P', monospace;
+}
+
+body {
+  background-color: #212529;
+  color: #e9ecef;
+  font-family: var(--nes-font);
+}
+
+.nes-container {
+  background-color: #2c3034;
+  color: #e9ecef;
+}
+
+a {
+  color: #209cee;
+}
+
+/* Responsive grid gap */
+@media (max-width: 600px) {
+  .nes-container {
+    padding: 0.5rem;
+  }
+}

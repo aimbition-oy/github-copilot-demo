@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: arcade
+      POSTGRES_PASSWORD: arcade
+      POSTGRES_DB: postgres
+    volumes:
+      - arcade-data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U arcade"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  auth:
+    build:
+      context: ./auth
+    ports:
+      - "8001:8001"
+    environment:
+      JWT_SECRET: "retro-arcade-dev-secret-change-me"
+      DATABASE_URL: "postgresql://arcade:arcade@postgres:5432/auth_db"
+      CORS_ORIGINS: "http://localhost:5173"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      JWT_SECRET: "retro-arcade-dev-secret-change-me"
+      DATABASE_URL: "postgresql://arcade:arcade@postgres:5432/arcade_db"
+      CORS_ORIGINS: "http://localhost:5173"
+      ENABLE_TEST_ENDPOINTS: "1"
+    depends_on:
+      auth:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_AUTH_URL: "http://localhost:8001"
+      VITE_BACKEND_URL: "http://localhost:8000"
+    depends_on:
+      backend:
+        condition: service_healthy
+      auth:
+        condition: service_healthy
+
+volumes:
+  arcade-data:

@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+dist/
+build/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+venv/
+.venv/
+env/
+ENV/
+
+# Node / npm
+node_modules/
+.npm
+
+# Build output
+dist/
+.next/
+
+# Vite
+.vite/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Data (SQLite files at runtime — local default DB; Docker uses Postgres)
+data/*.db
+auth/*.db
+backend/*.db
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors — VS Code (keep extensions.json)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# JetBrains / IntelliJ
+.idea/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Agent workflow run artifacts (active runs are scratch; archive + README are kept)
+agent-runs/active/
+!agent-runs/active/.gitkeep
+agent-runs/audit/*.log

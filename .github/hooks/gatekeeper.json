@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "timeout": 15,
+        "osx": "python3 .github/hooks/gatekeeper.py",
+        "linux": "python3 .github/hooks/gatekeeper.py",
+        "windows": "py .github/hooks/gatekeeper.py",
+        "command": "python3 .github/hooks/gatekeeper.py"
+      }
+    ]
+  }
+}

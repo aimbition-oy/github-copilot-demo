@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "timeout": 15,
+        "osx": "python3 .github/hooks/orient.py",
+        "linux": "python3 .github/hooks/orient.py",
+        "windows": "py .github/hooks/orient.py",
+        "command": "python3 .github/hooks/orient.py"
+      }
+    ]
+  }
+}
