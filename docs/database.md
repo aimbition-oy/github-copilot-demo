@@ -9,7 +9,7 @@ startup, not from hand-written SQL or migrations.
 `DATABASE_URL` is read in `*/app/config.py`:
 
 - **Docker stack:** PostgreSQL 16, two separate databases `auth_db` and
-  `arcade_db`, created by `postgres/init/01-create-databases.sh`.
+  `arcade_db`, created by `postgres/init/01-create-databases.sql`.
 - **Local default:** a SQLite file next to the service.
 - **Tests:** in-memory SQLite (`tests/conftest.py`).
 
